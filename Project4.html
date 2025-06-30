@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Student Login</title>
+
+  <style>
+    body {
+      background: #ffae42;
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 50px;
+      max-width: 1000px;
+      width: 100%;
+      padding: 20px;
+      flex-wrap: wrap;
+    }
+
+    .left-section {
+      flex: 1;
+      text-align: left;
+      min-width: 250px;
+    }
+
+    .left-section h1 {
+      color: #4b2e00;
+      font-size: 32px;
+      margin: 0;
+    }
+
+    .login-container {
+      background: #ffe4b5;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .login-container h2 {
+      text-align: center;
+      margin-bottom: 24px;
+      color: #333;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 6px;
+      color: #555;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    .btn {
+      width: 60%;
+      padding: 12px;
+      margin: 10px auto 0;
+      display: block;
+      text-align: center;
+      background-color: #8b4513;
+      color: white;
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn:hover {
+      background-color: #5d2f0f;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="left-section">
+      <h1>Welcome to our ClickToLearn!</h1>
+    </div>
+
+    <div class="login-container">
+      <h2>Fill Your Details to Learn More</h2>
+      <form action="/submit-login" method="POST">
+        <div class="form-group">
+          <label for="studentName">Name</label>
+          <input type="text" id="studentName" name="studentName" placeholder="Enter Your Name" required>
+        </div>
+        <div class="form-group">
+          <label for="studentEmail">Email</label>
+          <input type="email" id="studentEmail" name="studentEmail" placeholder="Enter Your Email Id" required>
+        </div>
+        <div class="form-group">
+          <label for="studentPassword">Password</label>
+          <input type="text" id="studentPassword" name="studentPassword" placeholder="Enter Your Password "required>
+
+        </div>
+       
+      </form>
+
+      <a href="pro4.1.html" class="btn">Next</a>
+    </div>
+  </div>
+
+</body>
+</html>
