@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Beauty from Kitchen</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-image: url('https://static.vecteezy.com/system/resources/thumbnails/028/095/583/small_2x/empty-wooden-table-top-with-a-blurred-background-of-a-kitchen-setting-ai-generated-photo.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-position: center;
+      color: #fff;
+    }
+
+    #startScreen {
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.4);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      color: #fff;
+      text-align: center;
+      padding: 30px;
+      text-shadow: 1px 1px 3px #000;
+    }
+
+    h1 {
+      font-size: 48px;
+      margin-bottom: 10px;
+    }
+
+    #startScreen p {
+      font-size: 20px;
+      max-width: 600px;
+      margin-top: 10px;
+    }
+
+    #startScreen .scroll-note {
+      margin-top: 25px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #fffacd;
+      text-shadow: 1px 1px 4px black;
+    }
+
+    #mainContent {
+      padding: 40px 20px;
+      text-align: center;
+      color: #333;
+      background: rgba(255, 255, 255, 0.8);
+    }
+
+    .category, .subtype {
+      display: inline-block;
+      background: linear-gradient(135deg, #ff5c8a, #ff3385);
+      margin: 10px;
+      padding: 15px 25px;
+      border: 2px solid #ffb6c1;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      color: white;
+      transition: transform 0.2s, background-color 0.2s;
+    }
+
+    .category:hover, .subtype:hover {
+      transform: scale(1.05);
+      background-color: #ffeef5;
+      color: #444;
+    }
+
+    .remedy {
+      margin-top: 30px;
+      background-color: transparent;
+      padding: 20px;
+      border-radius: 10px;
+      border: 1px dashed #ccc;
+      width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .btn {
+      margin-top: 10px;
+      padding: 12px 30px;
+      background: linear-gradient(135deg, #ff5c8a, #ff3385);
+      border: none;
+      border-radius: 30px;
+      color: white;
+      font-weight: bold;
+      font-size: 17px;
+      cursor: pointer;
+      box-shadow: 0 6px 15px rgba(255, 105, 180, 0.5);
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      background: linear-gradient(135deg, #e60073, #cc0066);
+      box-shadow: 0 8px 20px rgba(255, 20, 147, 0.7);
+      transform: scale(1.05);
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 10;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-content {
+      background: #fff;
+      padding: 25px;
+      border-radius: 15px;
+      margin: 100px auto;
+      width: 80%;
+      max-width: 400px;
+      position: relative;
+      color: black;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      background: crimson;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Start Page -->
+<div id="startScreen">
+  <h1>Beauty from Kitchen</h1>
+  <p>Glow Naturally with Homemade Secrets ✨</p>
+  <p>
+    Taking care of your skin isn’t vanity — it’s self-love. 💖  
+    Embrace natural remedies from your kitchen and glow with goodness every day!
+  </p>
+  <p class="scroll-note">👇 Please scroll to explore the natural remedies 👇</p>
+</div>
+
+<!-- Main Content Page -->
+<div id="mainContent">
+  <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 40px; align-items: center;">
+    <div style="max-width: 400px; font-size: 20px; color: #444;">
+      <h2 style="margin-bottom: 15px;">Why Skin Care Matters 🌿</h2>
+      <p>
+        Your kitchen is a powerhouse of natural beauty remedies.  
+        With just a few ingredients, you can refresh your skin, strengthen your hair, and heal your body — safely and naturally.
+      </p>
+    </div>
+    <div>
+      <h3 style="text-align: center;">Select your care type:</h3>
+      <div>
+        <div class="category" onclick="showSubTypes('skin')">🌸 Skin Care</div>
+        <div class="category" onclick="showSubTypes('hair')">💇‍♀️ Hair Care</div>
+        <div class="category" onclick="showSubTypes('body')">🧼 Body Care</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="subTypeContainer" style="margin-top: 30px;"></div>
+  <div id="remedyContainer"></div>
+</div>
+
+<!-- Modal Popup -->
+<div id="stepModal" class="modal">
+  <div class="modal-content">
+    <button class="close-btn" onclick="closeModal()">×</button>
+    <h3>Steps</h3>
+    <p id="stepText"></p>
+  </div>
+</div>
+<div style="text-align: center; padding: 15px; background: rgba(255, 255, 255, 0.7); color: #444; font-size: 20px; margin-top: 40px; border-top: 1px solid #ccc;">
+  © 2025 abiAI24. All rights reserved. ✨
+</div>
+
+<script>
+  const remedies = {
+    skin: {
+      oily: {
+        name: "Multani Mitti Pack",
+        ingredients: "Multani mitti, Rose water",
+        steps: "Mix 2 tbsp multani mitti with rose water. Apply on face. Rinse after 15 mins."
+      },
+      dry: {
+        name: "Honey + Curd Mask",
+        ingredients: "Honey, Curd",
+        steps: "Mix 1 tbsp honey and 2 tbsp curd. Apply. Wash off after 20 mins."
+      },
+      combination: {
+        name: "Sandal + Turmeric Pack",
+        ingredients: "Sandalwood powder, Turmeric, Milk",
+        steps: "Mix and apply evenly. Rinse off after 15 mins."
+      },
+      sensitive: {
+        name: "Aloe + Cucumber Calm Pack",
+        ingredients: "Aloe vera gel, Cucumber juice",
+        steps: "Mix and apply gently. Rinse with cool water after 15 mins."
+      },
+      normal: {
+        name: "Milk + Honey Glow Mask",
+        ingredients: "Raw milk, Honey",
+        steps: "Mix 1 tbsp honey with 2 tbsp raw milk. Apply and wash after 20 mins."
+      }
+    },
+    hair: {
+      dandruff: {
+        name: "Neem Oil Treatment",
+        ingredients: "Neem oil, Coconut oil",
+        steps: "Mix and apply to scalp. Leave for 30 mins before washing."
+      },
+      hairfall: {
+        name: "Aloe Vera + Curd Pack",
+        ingredients: "Aloe vera gel, Curd",
+        steps: "Mix and apply to roots. Leave for 25 mins and rinse."
+      },
+      dryhair: {
+        name: "Banana Hair Mask",
+        ingredients: "Banana, Honey, Olive oil",
+        steps: "Blend together and apply to hair. Wash after 30 mins."
+      },
+      frizzy: {
+        name: "Egg + Yogurt Smooth Mask",
+        ingredients: "1 Egg, 2 tbsp Yogurt",
+        steps: "Beat egg and mix with yogurt. Apply and rinse with mild shampoo after 30 mins."
+      },
+      greasy: {
+        name: "Lemon + Aloe Cleanser",
+        ingredients: "Lemon juice, Aloe vera gel",
+        steps: "Mix and massage onto scalp. Leave for 15 mins then wash."
+      }
+    },
+    body: {
+      tan: {
+        name: "Tomato Scrub",
+        ingredients: "Tomato pulp, Sugar",
+        steps: "Rub gently on tanned area. Wash after 10 mins."
+      },
+      heels: {
+        name: "Milk + Ghee Remedy",
+        ingredients: "Warm milk, Ghee",
+        steps: "Soak feet in warm milk. Apply ghee overnight."
+      },
+      hands: {
+        polish: {
+          name: "Gram Flour Polish",
+          ingredients: "Besan, Turmeric, Milk cream",
+          steps: "Mix and scrub gently. Rinse after 15 mins."
+        },
+        dry: {
+          name: "Honey + Olive Soak",
+          ingredients: "Honey, Olive oil",
+          steps: "Mix and rub gently. Leave for 15 mins and rinse."
+        },
+        rough: {
+          name: "Sugar + Lemon Scrub",
+          ingredients: "Sugar, Lemon juice, Coconut oil",
+          steps: "Scrub hands gently and rinse after 10 mins."
+        }
+      }
+    }
+  };
+
+  function showSubTypes(type) {
+    document.getElementById("remedyContainer").innerHTML = "";
+    let options = '';
+    if (type === 'body' && remedies[type].hands) {
+      for (const handType in remedies[type].hands) {
+        options += `<div class="subtype" onclick="showRemedy('${type}','hands','${handType}')">${handType.charAt(0).toUpperCase() + handType.slice(1)} Hands</div>`;
+      }
+    } else {
+      let subKeys = Object.keys(remedies[type]);
+      subKeys.forEach(sub => {
+        options += `<div class="subtype" onclick="showRemedy('${type}','${sub}')">${sub.charAt(0).toUpperCase() + sub.slice(1)}</div>`;
+      });
+    }
+    document.getElementById("subTypeContainer").innerHTML = `<h3>Select type:</h3>${options}`;
+  }
+
+  function showRemedy(type, sub, subsub = null) {
+    let r;
+    if (subsub) {
+      r = remedies[type][sub][subsub];
+    } else {
+      r = remedies[type][sub];
+    }
+    document.getElementById("remedyContainer").innerHTML = `
+      <div class="remedy">
+        <h3>${r.name}</h3>
+        <p><strong>Ingredients:</strong> ${r.ingredients}</p>
+        <button class="btn" onclick="showSteps('${r.steps}')">Show Steps</button>
+      </div>
+    `;
+  }
+
+  function showSteps(steps) {
+    document.getElementById("stepText").innerText = steps;
+    document.getElementById("stepModal").style.display = "block";
+  }
+
+  function closeModal() {
+    document.getElementById("stepModal").style.display = "none";
+  }
+</script>
+
+</body>
+</html>
